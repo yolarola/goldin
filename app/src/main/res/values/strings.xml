@@ -2,19 +2,5 @@
     <string name="app_name">goldin</string>
     <string name="mainpage">Главная страница</string>
 
-    <string-array name="box_names">
-        <item>Коробка</item>
-        <item>Коробасыч</item>
-        <item>Микро-сундук</item>
-        <item>Огромная-штатулка</item>
-        <item>Обычная деревянная коробка</item>
-        <item>Коробкойд</item>
-        <item>Коробушка</item>
-        <item>Корбус</item>
-        <item>Корбонка</item>
-        <item>Мега-Коробка</item>
-        <item>Невероятный бокс</item>
-        <item>Боксыч</item>
-        <item>Отличная коробка-бокс</item>
-    </string-array>
+    
 </resources>

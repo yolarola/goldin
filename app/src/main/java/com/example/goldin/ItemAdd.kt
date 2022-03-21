@@ -32,28 +32,28 @@ import com.example.goldin.Products
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 
-class ItemEdit : Activity() {
+class ItemAdd : Activity() {
 
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_item_edit)
-
-        val id = intent.getIntExtra("id",777)
-        val name = intent.getStringExtra("name")
-        val price = intent.getIntExtra("price",0)
-        val category = intent.getIntExtra("category",0)
-        val structure = intent.getStringExtra("structure")
-        val weight = intent.getIntExtra("weight",0)
-        val color = intent.getStringExtra("color")
-        val size = intent.getStringExtra("size")
-        val myArray = intent.getSerializableExtra("myArray")
+        setContentView(R.layout.activity_item_add)
 
 
-       // val rez = getMethod()
-       // Log.d("e", rez.toString())
+        val name = "test"
+        val price = 100
+        val category = 2
+        val structure = "test"
+        val weight = 1
+        val color = "test"
+        val size = 1
+        val myArray = "test"
+
+
+        // val rez = getMethod()
+        // Log.d("e", rez.toString())
 
 
 
@@ -66,8 +66,7 @@ class ItemEdit : Activity() {
         findViewById<TextView>(R.id.editTextTextPersonName7).text = color// color
         // run("https://api.github.com/users/Evin1-/repos")
         findViewById<Button>(R.id.button4).setOnClickListener {
-
-            fun putMethod(id:String,jsonObject:JSONObject) {
+            fun rawJSON(jsonObject: JSONObject) {
 
                 // Create Retrofit
                 val retrofit = Retrofit.Builder()
@@ -80,16 +79,16 @@ class ItemEdit : Activity() {
                 // Create JSON using JSONObject
 
 
+
                 // Convert JSONObject to String
                 val jsonObjectString = jsonObject.toString()
 
                 // Create RequestBody ( We're not using any converter, like GsonConverter, MoshiConverter e.t.c, that's why we use RequestBody )
                 val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
-
+                // Log.d("requestbody", requestBody.toString())
                 CoroutineScope(Dispatchers.IO).launch {
-
-                    // Do the PUT request and get response
-                    val response = service.updateEmployee(id,requestBody)
+                    // Do the POST request and get response
+                    val response = service.createEmployee(requestBody)
 
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
@@ -102,12 +101,8 @@ class ItemEdit : Activity() {
                                         ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
                                 )
                             )
-
-                            val intent = Intent(this@ItemEdit, MainActivity::class.java)
-                            // intent.setComponent(null)
-                          //  intent.putExtra("jsonArray", prettyJson)
-                            intent.putExtra("flag", 1)
-
+                            val intent = Intent(this@ItemAdd, MainActivity::class.java)
+                           // intent.putExtra("jsonArray", prettyJson)
                             startActivity(intent)
                             Log.d("Pretty Printed JSON :", prettyJson)
 
@@ -119,8 +114,9 @@ class ItemEdit : Activity() {
                     }
                 }
             }
-
-
+//            val intent = Intent(this@ItemEdit, main_page::class.java)
+//            intent.putExtra("name", name)
+//            startActivity(intent)
             val text1: CharSequence = findViewById<TextView>(R.id.editTextTextPersonName2).text
             val text2: CharSequence = findViewById<TextView>(R.id.editTextTextPersonName5).text
             val text3: CharSequence = findViewById<TextView>(R.id.editTextTextPersonName3).text
@@ -153,13 +149,13 @@ class ItemEdit : Activity() {
                     "size",
                     "test"
                 ) //
-                putMethod(id.toString(),jsonObject)
+                rawJSON(jsonObject)
             } else {
                 Toast.makeText(applicationContext, "Please enter some message! ", Toast.LENGTH_SHORT).show()
             }
 
-                }
+        }
 
 
-            }
+    }
 }

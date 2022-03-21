@@ -2,12 +2,11 @@ package com.example.goldin
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.TextView
 import android.view.LayoutInflater
 
-class CustomRecyclerAdapter(private val names: List<String>, private val onItemClickListener: OnItemClickListener) :
+class CustomRecyclerAdapter(private val names: Array<Products>, private val onItemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() {
 
 
@@ -31,11 +30,11 @@ class CustomRecyclerAdapter(private val names: List<String>, private val onItemC
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.largeTextView?.text = names[position]
-        holder.smallTextView?.text = "____"
+        holder.largeTextView?.text = names[position].name
+        holder.smallTextView?.text = "__________________________________________"
 
         holder.itemView.setOnClickListener{
-            onItemClickListener.onItemClicled(position)
+            onItemClickListener.onItemClicked(names,position)
         }
 
 

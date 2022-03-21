@@ -1,25 +1,27 @@
 package com.example.goldin
 
-import android.util.Log
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.ResponseBody
-import org.json.JSONObject
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface APIService {
-    @GET("/posts/1")
+    @GET("/products/")
     suspend fun getPosts(): Response<ResponseBody>
+
+    @POST("/products/")
+    suspend fun createEmployee(@Body requestBody: RequestBody): Response<ResponseBody>
+
+    @PUT("/products/\${id}/")
+    suspend fun updateEmployee(@Path("id") id: String, @Body requestBody: RequestBody): Response<ResponseBody>
+
+
+
+    @DELETE("/products/\${id}/")
+    suspend fun deleteEmployee(@Path("id") id: String): Response<ResponseBody>
+
+
+
+
 
 }

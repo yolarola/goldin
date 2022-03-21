@@ -49,6 +49,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ItemDetail" />
         </activity>
+        <activity
+            android:name=".ItemAdd"
+            android:label="Добавление"
+            android:parentActivityName=".main_page"
+            android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".main_page" />
+        </activity>
     </application>
 
 </manifest>
